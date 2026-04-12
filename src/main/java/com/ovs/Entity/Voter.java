@@ -1,9 +1,9 @@
 package com.ovs.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Voter {
@@ -11,9 +11,35 @@ public class Voter {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String username;
     private String password;
-    private boolean hasVoted = false;
+
+    private String role = "USER";
+
+    @ManyToMany
+    @JoinTable(
+            name = "voter_poll",
+            joinColumns = @JoinColumn(name = "voter_id"),
+            inverseJoinColumns = @JoinColumn(name = "poll_id")
+    )
+    private Set<Poll> votedPolls = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "voter_option",
+            joinColumns = @JoinColumn(name = "voter_id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id")
+    )
+    private Set<Option> votedOptions = new HashSet<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -31,19 +57,27 @@ public class Voter {
         this.password = password;
     }
 
-    public Boolean getHasVoted() {
-        return hasVoted;
+    public Set<Poll> getVotedPolls() {
+        return votedPolls;
     }
 
-    public void setHasVoted(Boolean hasVoted) {
-        this.hasVoted = hasVoted;
+    public void setVotedPolls(Set<Poll> votedPolls) {
+        this.votedPolls = votedPolls;
     }
 
-    public Long getId() {
-        return id;
+    public Set<Option> getVotedOptions() {
+        return votedOptions;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setVotedOptions(Set<Option> votedOptions) {
+        this.votedOptions = votedOptions;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
