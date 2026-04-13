@@ -13,8 +13,14 @@ public class Poll {
     public Long Id;
 
     private String title;
+    
+    @Column(columnDefinition = "TEXT")
     private String description;
+    
+    @Column(columnDefinition = "DATETIME")
     private LocalDateTime startTime;
+    
+    @Column(columnDefinition = "DATETIME")
     private LocalDateTime endTime;
 
     @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL, orphanRemoval = true)
