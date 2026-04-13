@@ -111,3 +111,12 @@ A multi-stage `Dockerfile` is included:
    npm run dev
    ```
    *(The React app will be accessible at `http://localhost:3000` and proxy API requests to port `8080`).*
+
+### Screenshots
+<img width="1901" height="837" alt="Screenshot 2026-04-13 045713" src="https://github.com/user-attachments/assets/650fe307-d934-4e67-a660-31d65bc22096" />
+
+<img width="1892" height="834" alt="Screenshot 2026-04-13 045833" src="https://github.com/user-attachments/assets/e7937b92-caff-48ef-aeb9-e2cc21bc7020" />
+
+<img width="1895" height="836" alt="Screenshot 2026-04-13 045852" src="https://github.com/user-attachments/assets/0099177a-189c-4332-ba19-14554dc3118b" />
+
+
